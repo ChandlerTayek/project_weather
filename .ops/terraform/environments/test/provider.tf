@@ -10,9 +10,5 @@ terraform {
 
 provider "aws" {
   region = var.aws_region
-  profile = "matchpoint"
+  profile = var.aws_cli_profile
 }
-
-# provider "awsappmesh" {
-#   version = "~> 1.0"
-# }

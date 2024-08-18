@@ -1,5 +1,5 @@
 resource "aws_lambda_function" "api-gateway" {
-  function_name = "ApiGateway"
+  function_name = "${var.p_name}ApiGateway"
   package_type  = "Image"
   image_uri     = "${var.api-gateway-image-uri}:latest"
 
@@ -74,7 +74,7 @@ resource "aws_lambda_permission" "main" {
 
 # Define Lambda function for Court Availability using Docker image
 resource "aws_lambda_function" "court_availability_lambda" {
-  function_name = "CourtAvailability"
+  function_name = "${var.p_name}CourtAvailability"
   role          = aws_iam_role.main.arn
   package_type  = "Image"
   image_uri     = "${var.availability-image-uri}:latest"
@@ -106,7 +106,7 @@ resource "aws_lambda_permission" "court_availability" {
 
 # Define Lambda function for Court Reservation using Docker image
 resource "aws_lambda_function" "court_reservation_lambda" {
-  function_name = "CourtReservation"
+  function_name = "${var.p_name}CourtReservation"
   role          = aws_iam_role.main.arn
   package_type  = "Image"
   image_uri     = "${var.reservation-image-uri}:latest"

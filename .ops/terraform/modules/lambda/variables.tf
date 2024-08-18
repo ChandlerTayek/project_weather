@@ -1,3 +1,7 @@
+variable "p_name" {
+  type = string
+}
+
 variable "api-gateway-image-uri" {
   type = string
 }

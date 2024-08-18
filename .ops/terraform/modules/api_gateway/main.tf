@@ -1,5 +1,5 @@
 resource "aws_apigatewayv2_api" "main" {
-  name          = "myDockerLambdaAPI"
+  name          = "${var.p_name}GatewayMain"
   protocol_type = "HTTP"
 }
 

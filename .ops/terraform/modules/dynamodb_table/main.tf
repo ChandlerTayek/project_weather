@@ -18,9 +18,9 @@ resource "aws_dynamodb_table" "court_availability_reservations" {
 resource "null_resource" "seed_dynamodb_table" {
   provisioner "local-exec" {
     command = <<EOT
-      aws dynamodb put-item --profile matchpoint --table-name ${aws_dynamodb_table.court_availability_reservations.name} --item '{"court": {"S": "Court 1"}, "last_updated": {"S": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'"}, "status": {"S": "available"}, "reservation_info": {"NULL": true}}'
-      aws dynamodb put-item --profile matchpoint --table-name ${aws_dynamodb_table.court_availability_reservations.name} --item '{"court": {"S": "Court 2"}, "last_updated": {"S": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'"}, "status": {"S": "reserved"}, "reservation_info": {"M": {"user_id": {"S": "123"}, "reservation_time": {"S": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'"}}}}'
-      aws dynamodb put-item --profile matchpoint --table-name ${aws_dynamodb_table.court_availability_reservations.name} --item '{"court": {"S": "Court 3"}, "last_updated": {"S": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'"}, "status": {"S": "available"}, "reservation_info": {"NULL": true}}'
+      aws dynamodb put-item --profile ${var.aws_cli_profile} --region ${var.region} --table-name ${aws_dynamodb_table.court_availability_reservations.name} --item '{"court": {"S": "Court 1"}, "last_updated": {"S": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'"}, "status": {"S": "available"}, "reservation_info": {"NULL": true}}'
+      aws dynamodb put-item --profile ${var.aws_cli_profile} --region ${var.region}  --table-name ${aws_dynamodb_table.court_availability_reservations.name} --item '{"court": {"S": "Court 2"}, "last_updated": {"S": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'"}, "status": {"S": "reserved"}, "reservation_info": {"M": {"user_id": {"S": "123"}, "reservation_time": {"S": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'"}}}}'
+      aws dynamodb put-item --profile ${var.aws_cli_profile} --region ${var.region}  --table-name ${aws_dynamodb_table.court_availability_reservations.name} --item '{"court": {"S": "Court 3"}, "last_updated": {"S": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'"}, "status": {"S": "available"}, "reservation_info": {"NULL": true}}'
     EOT
   }
 
