@@ -8,10 +8,6 @@ resource "aws_lambda_function" "main" {
 
   role          = var.lambda_iam_role_arn
   timeout = 3
-
-  # Ensure Lambda creation waits for Docker image push
-  depends_on = [null_resource.main]
-
   environment {
     variables = {
       WEATHER_API_KEY = "a2bb86c755d04a29a7a43426241808"  # Set this to your actual API key
