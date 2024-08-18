@@ -1,0 +1,14 @@
+# Use the AWS Lambda Python 3.9 base image
+FROM public.ecr.aws/lambda/python:3.9
+
+# Set the working directory inside the container to be /var/task
+WORKDIR ${LAMBDA_TASK_ROOT}
+
+# Copy the Python code to the container
+COPY ./lambda_functions/reserve_court.py .
+
+# Install dependencies (if any)
+# For simple cases, we don't have any additional dependencies
+
+# Set the Lambda handler
+CMD ["reserve_court.lambda_handler"]
